@@ -9,6 +9,8 @@ public class Persion {
     private int age;
     private String education;
 
+    private Persion(){}
+
     /**
      * 1、将构造函数私有化   禁止外界直接创建对象
      * 2、私有构造函数指定入参为建造者  只有建造者才能赋值  创建对象
