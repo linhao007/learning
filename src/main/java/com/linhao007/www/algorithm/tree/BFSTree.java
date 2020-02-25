@@ -152,5 +152,28 @@ public class BFSTree {
         }
     }
 
+    /**
+     * 将一个二叉树转换成较大值的二叉树
+     *
+     * @param root
+     * @return
+     */
+    int sum;
+
+    public TreeNode convertBST(TreeNode root) {
+        convertBST_02(root);
+        return root;
+    }
+
+    private void convertBST_02(TreeNode treeNode) {
+        if (treeNode == null) {
+            return;
+        }
+        convertBST_02(treeNode.right);
+        treeNode.val += sum;
+        sum = treeNode.val;
+        convertBST_02(treeNode.left);
+    }
+
 
 }
