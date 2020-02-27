@@ -1,6 +1,8 @@
 package com.linhao007.www.algorithm.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -44,6 +46,55 @@ public class BFSTree {
             }
         }
     }
+
+    /**
+     * Z型遍历
+     *
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (root == null) {
+            return result;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        int depth = 0;
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> tmp = new ArrayList<Integer>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = null;
+                //因为是走z字形，所有相邻两层的节点处理是相反的
+                if (depth % 2 == 0) {
+                    //获取链表最后一个节点
+                    node = queue.pollLast();
+                    if (node.left != null) {
+                        queue.offerFirst(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.offerFirst(node.right);
+                    }
+
+                } else {
+                    //获取链表第一个节点
+                    node = queue.poll();
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    }
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    }
+                }
+                tmp.add(node.val);
+            }
+            depth++;
+            result.add(tmp);
+        }
+        return result;
+    }
+
 
     /**
      * 前序遍历  递归实现 先根节点 再左子树 最后右子树
