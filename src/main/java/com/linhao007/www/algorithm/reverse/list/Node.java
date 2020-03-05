@@ -1,6 +1,5 @@
 package com.linhao007.www.algorithm.reverse.list;
 
-import com.linhao007.www.algorithm.leetcode.MaxSum;
 
 /**
  * @author: linhu@kanzhun.com
