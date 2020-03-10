@@ -43,6 +43,28 @@ public class RepeatChat {
         return max;
     }
 
+    /**
+     * 复杂度为o(n)
+     *
+     * @param s
+     * @return
+     */
+    public static int lengthOfLongestSubstring_02(String s) {
+        int length = s.length();
+        if (length < 1) return 0;
+        int maxLen = 1;
+        for (int head = 0, tail = 1; tail < s.length(); tail++) {
+            char c = s.charAt(tail);
+            int index = s.indexOf(c, head);
+            if (index < tail) {
+                head += (index - head + 1);
+            }
+            int len = tail - head + 1;
+            maxLen = len > maxLen ? len : maxLen;
+        }
+        return maxLen;
+    }
+
     public static void main(String[] args) {
         String str = "ab";
         System.out.println(lengthOfLongestSubstring(str));
