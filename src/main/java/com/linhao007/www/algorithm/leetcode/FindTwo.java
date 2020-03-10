@@ -3,7 +3,7 @@ package com.linhao007.www.algorithm.leetcode;
 /**
  * @author: linhu@kanzhun.com
  * @date: 2020/3/4 21:36
- * @description:
+ * @description: 根据二维数组  查找某个数  存在返回true   不存在返回false
  */
 public class FindTwo {
     public static boolean Find(int target, int[][] array) {
