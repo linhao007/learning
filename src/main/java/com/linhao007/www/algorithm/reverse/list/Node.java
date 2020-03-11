@@ -15,7 +15,7 @@ public class Node<T> {
     /**
      * 指针域
      */
-    private Node next;
+    private Node<T> next;
 
     public Node(T i) {
         this.data = i;
@@ -66,8 +66,9 @@ public class Node<T> {
     /**
      * 连表相加
      * 输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
-       输出：7 -> 0 -> 8
-       原因：342 + 465 = 807
+     * 输出：7 -> 0 -> 8
+     * 原因：342 + 465 = 807
+     *
      * @param l1
      * @param l2
      * @return
@@ -91,6 +92,37 @@ public class Node<T> {
         }
 
         return root.next;
+    }
+
+    /**
+     * 用一个 非空 单链表来表示一个非负整数，然后将这个整数加一。
+     *
+     * @param head
+     * @return
+     */
+    public Node plusOne(Node<Integer> head) {
+        Node<Integer> dummy = new Node<Integer>(1);
+        dummy.next = plus(head);
+        if (dummy.next.data == 10) {
+            dummy.next.data = 0;
+            return dummy;
+        }
+        return head;
+    }
+
+    public Node plus(Node<Integer> head) {
+        if (head.next == null) {
+            head.data = (head.data + 1);
+            return head;
+        }
+
+        Node node = plus(head.next);
+        if (head.next.data == 10) {
+            head.data = (head.data + 1);
+            node.data = 0;
+        }
+
+        return head;
     }
 
 }
