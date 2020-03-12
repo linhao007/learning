@@ -52,6 +52,7 @@ public class RepeatChat {
     public static int lengthOfLongestSubstring_02(String s) {
         int length = s.length();
         if (length < 1) return 0;
+        //记录最大长度
         int maxLen = 1;
         for (int head = 0, tail = 1; tail < s.length(); tail++) {
             char c = s.charAt(tail);
@@ -66,7 +67,7 @@ public class RepeatChat {
     }
 
     public static void main(String[] args) {
-        String str = "ab";
-        System.out.println(lengthOfLongestSubstring(str));
+        String str = "abcabcbb";
+        System.out.println(lengthOfLongestSubstring_02(str));
     }
 }
