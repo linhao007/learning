@@ -3,7 +3,7 @@ package com.linhao007.www.algorithm.leetcode;
 /**
  * @author: linhu@kanzhun.com
  * @date: 2020/3/10 18:11
- * @description:
+ * @description: 字符串转换成整数
  */
 public class StringToInteger {
     public static int myAtoi(String str) {
