@@ -48,11 +48,29 @@ public class BFSTree {
     }
 
     /**
-     * 二叉树的反转
+     * 二叉树的左右节点
      */
 
     public static TreeNode convertNode(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        TreeNode node, temp;
+        while (!queue.isEmpty()) {
+            node = queue.poll();
+            temp = node.left;
+            node.left = node.right;
+            node.right = temp;
 
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
         return root;
     }
 
