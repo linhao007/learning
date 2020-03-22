@@ -48,6 +48,16 @@ public class BFSTree {
     }
 
     /**
+     * 二叉树的反转
+     */
+
+    public static TreeNode convertNode(TreeNode root) {
+
+        return root;
+    }
+
+
+    /**
      * Z型遍历
      *
      * @param root
