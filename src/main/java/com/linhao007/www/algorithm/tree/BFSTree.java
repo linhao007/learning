@@ -1,9 +1,6 @@
 package com.linhao007.www.algorithm.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author: linhu@kanzhun.com
