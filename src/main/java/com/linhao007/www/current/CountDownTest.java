@@ -1,6 +1,7 @@
 package com.linhao007.www.current;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author: linhu@kanzhun.com
@@ -8,8 +9,36 @@ import java.util.concurrent.*;
  * @description:
  */
 public class CountDownTest {
-    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(30, 100, 60,
-            TimeUnit.SECONDS, new LinkedBlockingQueue(500));
+
+    /**
+     * 参数初始化
+     */
+    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
+    /**
+     * 核心线程数量大小
+     */
+    private static final int corePoolSize = Math.max(2, Math.min(CPU_COUNT - 1, 4));
+
+    /**
+     * 线程池最大容纳线程数
+     */
+    private static final int maximumPoolSize = CPU_COUNT * 2 + 1;
+
+    /**
+     * 线程池最大容纳线程数
+     */
+    private static final int keepAliveTime = 30;
+
+
+    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime,
+            TimeUnit.SECONDS, new LinkedBlockingQueue(500), new ThreadFactory() {
+        private final AtomicInteger mCount = new AtomicInteger(1);
+
+        @Override
+        public Thread newThread(Runnable r) {
+            return new Thread(r, "countDownLunch #" + mCount.getAndIncrement());
+        }
+    });
 
     class TestCallAble implements Callable<Integer> {
 
@@ -46,6 +75,10 @@ public class CountDownTest {
             e.printStackTrace();
         }
         return fastValue;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(CPU_COUNT + ":" + corePoolSize);
     }
 
 }
