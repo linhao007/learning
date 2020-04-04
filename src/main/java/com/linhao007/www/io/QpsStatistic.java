@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author: linhu@kanzhun.com
  * @date: 2020/4/4 11:44
- * @description:
+ * @description: java实现脚本：grep 'iOS' access.log | awk -F"|" '{print $1}' | sort | uniq -c
  */
 public class QpsStatistic {
     /**
